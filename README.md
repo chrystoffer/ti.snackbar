@@ -27,6 +27,7 @@ btn.addEventListener('click', function() {
   Snackbar.show({
     message: 'Titanium rocks!',
     container: window,
+    style: 'success', //error - warn - success - info (If not add the style property will be the default color)
     length: Snackbar.SNACKBAR_LENGTH_SHORT,
     action: 'Press me!',
     onActionClicked: function() {
