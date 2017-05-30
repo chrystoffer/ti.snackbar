@@ -1,5 +1,7 @@
 var Snackbar = require('android.support.design.widget.Snackbar');
 var OnClickListener = require('android.view.View.OnClickListener');
+var View = require('android.view.View');
+var Color = require('android.graphics.Color');
 
 /**
  * Show the Snackbar for a short period of time.
@@ -25,12 +27,24 @@ exports.show = function(args) {
   var message = args.message;
   var length = args.length;
   var action = args.action;
+  var style = args.style;
   var actionTextColor = args.actionTextColor;
   var onActionClicked = args.onActionClicked;
   var onSnackbarShown = args.onSnackbarShown;
   var onSnackbarClicked = args.onSnackbarClicked;
   
   var snack = Snackbar.make(container, message, length);
+  
+  if (style == 'success')
+    style = '#FF21AB29';
+  if (style == 'warn')
+    style = '#FFFF7f00';
+  if (style == 'error')
+    style = '#FFEE0000';
+  if (style == 'info')
+    style = '#FF0077EA';
+  if (style != undefined)
+    snack.getView().setBackgroundColor(Color.parseColor(style));  
   
   if (onActionClicked && !action) {
       Ti.API.error('Specified \'onActionClicked\' without specifying \'action\'!');
